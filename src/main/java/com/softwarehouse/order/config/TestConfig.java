@@ -3,9 +3,11 @@ package com.softwarehouse.order.config;
 import com.softwarehouse.order.domain.category.Category;
 import com.softwarehouse.order.domain.enums.OrderStatus;
 import com.softwarehouse.order.domain.orders.Order;
+import com.softwarehouse.order.domain.product.Product;
 import com.softwarehouse.order.domain.user.User;
 import com.softwarehouse.order.repositories.CategoryRepository;
 import com.softwarehouse.order.repositories.OrderRepository;
+import com.softwarehouse.order.repositories.ProductRepository;
 import com.softwarehouse.order.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User(null, "Romeu Lima", "romeu.sousa@gmail.com", "98989898", "12346");
@@ -41,8 +46,15 @@ public class TestConfig implements CommandLineRunner {
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computer");
 
+        Product p1 = new Product(null, "The Lord of the Kings", "Lorem Ipsum", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Lorem Ipsum", 2190.0, "");
+        Product p3= new Product(null, "MacBook Pro", "Lorem Ipsum", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Lorem Ipsum", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Lorem Ipsum", 100.99, "");
+
 
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
     }
